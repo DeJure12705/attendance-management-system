@@ -2,6 +2,7 @@ window.renderTable = renderTable;
 function renderTable(students) {
     const table = document.getElementById("student_table_body");
     table.innerHTML = "";
+    console.log(students);
     if (students) {
         students.forEach((student, index) => {
             const date = new Date(student.created_at); // Or your date object
@@ -47,6 +48,6 @@ function renderTable(students) {
         document.getElementById("std_info_table").style.display = "block";
         document.getElementById(
             "std_info_table"
-        ).innerHTML = `<h3 class="text-center tracking-wide text-gray-500 text-xl">No Student Found</h3>`;
+        ).innerHTML = `<h3 class="py-4 text-center tracking-wide text-gray-500 text-xl">No Student Found</h3>`;
     }
 }

@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model
 {
     /** @use HasFactory<\Database\Factories\EventFactory> */
     use HasFactory;
-
+    use SoftDeletes;
 
     protected $fillable = [
         "event_name",
@@ -24,7 +25,7 @@ class Event extends Model
         "afternoon_checkOut_end",
         "date",
         "admin_id",
-        "status"
+        "status",
+        "fines_amount"
     ];
-
 }

@@ -30,7 +30,8 @@ $page = 'students';
                 Swal.fire({
                     icon: 'success',
                     title: 'Success!',
-                    text: '{{ session('success') }}',
+                    text: '{{ session('
+                                                        success ') }}',
                     showConfirmButton: false,
                     timer: 1500,
                 });
@@ -122,8 +123,8 @@ $page = 'students';
         </div>
     </div>
     {{-- Edit Student Information --}}
-    <div x-data="{ open: false }"="mt-4">
-        <div x-show.important="open" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div x-data="{ open: false }" class="mt-4">
+        <div x-show="open" x-cloak class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div x-on:click.outside="open = false" class="max-w-[1000px] bg-white p-6 rounded-lg shadow-lg">
                 <div class="border-b-2 border-green-500 mb-5">
                     <h1 class="text-2xl font-bold">
@@ -131,7 +132,7 @@ $page = 'students';
                     </h1>
                 </div>
                 <div class="mb-5">
-                    <form id="updateForm" action="{{ route('updateStudent') }}" x-ref ="updateForm" method="POST"
+                    <form id="updateForm" action="{{ route('updateStudent') }}" x-ref="updateForm" method="POST"
                         enctype="multipart/form-data" class="flex items-center">
                         @csrf
                         @method('PATCH')
@@ -327,7 +328,7 @@ $page = 'students';
                             Add Student Information
                         </x-slot>
                         <x-slot name="content">
-                            <form id="studentForm"action="{{ route('addStudent') }}" x-ref ="studentForm"
+                            <form id="studentForm" action="{{ route('addStudent') }}" x-ref="studentForm"
                                 method="POST" enctype="multipart/form-data" class="flex items-center">
                                 @csrf
                                 <div class="basis-3/4 justify-start">
@@ -444,8 +445,9 @@ $page = 'students';
                     <thead class="text-lg font-semibold text-gray-100 uppercase bg-green-700">
                         <tr>
                             <th scope="col" class="py-5">No.</th>
-                            <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
+                            <th scope="col">First Name</th>
+
                             <th scope="col">Middle Name</th>
                             <th scope="col">Suffix</th>
                             <th scope="col">Year Level</th>
@@ -463,8 +465,9 @@ $page = 'students';
                                 {{-- Added tr elements for rows to fix UI --}}
                                 <tr class="table_row" id="{{ $student->id }}">
                                     <td>{{ $student->s_studentID }}</td>
-                                    <td>{{ $student->s_fname }}</td>
                                     <td>{{ $student->s_lname }}</td>
+                                    <td>{{ $student->s_fname }}</td>
+
                                     <td>{{ $student->s_mname }}</td>
                                     <td>{{ $student->s_suffix }}</td>
                                     <td>{{ $student->s_lvl }}</td>

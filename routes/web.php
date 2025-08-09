@@ -49,8 +49,7 @@ Route::middleware('auth')->group(function () {
 
     // LOGS RELATED ROUTES
     Route::get('/logs', [LogController::class, 'viewLogs'])->name('logs');
-    Route::post('/logs/export-file', [LogController::class, 'exportFile'])->name('logs.export');
-    Route::post('/logs/clear-fines', [LogController::class, 'clearFines'])->name('logs.clear-fines');
+    Route::post('/logs/clear-logs', [LogController::class, 'clearLogs'])->name('logs.clear-logs');
 
     // STUDENT LOGS - API => VIA CATEGORY
     Route::get('/logs/category', [LogController::class, 'filterByCategory'])->name('fetchViaCategory');
@@ -71,17 +70,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/logs/filter', [LogController::class, 'filter'])->name('fetchLogViaSearch');
     Route::get('/logs/category', [LogController::class, 'filterByCategory'])->name('fetchLogViaCategory');
     Route::get("/logs/event", [LogController::class, "filterByEvent"])->name("fetchLogViaEvent");
+
     // FINES => VIA SEARCH AND FILTER
     Route::get('/fines/filter', [FineController::class, 'filter'])->name('fetchFinesViaSearch');
     Route::get('/fines/category', [FineController::class, 'filterByCategory'])->name('fetchFinesViaCategory');
     Route::get("/fines/events", [FineController::class, "filterByEvent"])->name("fetchFinesViaEvent");
+
+
     // STUDENT - API => VIA CATEGORY
 
 
     // ATTENDANCE RELATED ROUTES
     Route::get('/attendance', [StudentAttendanceController::class, 'view'])->name('attendance');
     Route::post('/student-attendance', [StudentAttendanceController::class, 'recordAttendance'])->name('attendanceStudent');
-    Route::get('/studentAttendace/recent', [StudentAttendanceController::class, 'recent'])->name('getAttendanceRecent');
+    Route::get('/studentAttendace/recent', [StudentAttendanceController::class, 'retrieveRecentLogs'])->name('getAttendanceRecent');
     Route::get('/student_Attendance', [StudentAttendanceController::class, 'formatAttendance'])->name('try');    // Route::post
 
     // EVENTS RELATED ROUTES
@@ -99,6 +101,11 @@ Route::middleware('auth')->group(function () {
     // Fine Settings Routes
     Route::get('/fines', [FineController::class, 'view'])->name('fines.view');
     Route::put('/fines/settings', [FinesController::class, 'updateSettings'])->name('fines.settings.update');
+    Route::post("/fines/clear", [FineController::class, "clearLogs"])->name("fines.clear");
+
+    // EXPORT RELATED ROUTES
+    Route::post("/fines/export-file", [FineController::class, "exportFile"])->name("fines.export");
+    Route::post('/logs/export-file', [LogController::class, 'exportFile'])->name('logs.export');
 });
 
 

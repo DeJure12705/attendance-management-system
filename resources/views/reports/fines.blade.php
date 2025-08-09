@@ -10,6 +10,7 @@
 
         table {
             width: 100%;
+            border-collapse: collapse;
             margin-top: 20px;
         }
 
@@ -28,7 +29,6 @@
             color: #333;
             text-align: center;
         }
-
 
         .college-info {
             display: flex;
@@ -50,8 +50,6 @@
             max-width: 70px;
             max-height: 70px;
         }
-
-        footer {}
     </style>
 </head>
 
@@ -71,8 +69,8 @@
     </header>
     <hr>
 
-    <table class="" style="min-height: 500px; border-collapse: collapse;
-">
+
+    <table>
         <thead>
             <tr>
                 <th>No.</th>
@@ -80,9 +78,10 @@
                 <th>Program</th>
                 <th>Set</th>
                 <th>Level</th>
-                <th>Time In</th>
-                <th>Time Out</th>
-
+                <th>Event</th>
+                <th>Fines Amount</th>
+                <th>Total Fines</th>
+                <th>Date</th>
             </tr>
         </thead>
         <tbody>
@@ -94,19 +93,15 @@
                     <td>{{ $log->s_program }}</td>
                     <td>{{ $log->s_set }}</td>
                     <td>{{ $log->s_lvl }}</td>
-                    <td>{{ $log->attend_checkIn ? date('h:i A', strtotime($log->attend_checkIn)) : '-' }}</td>
-                    <td>{{ $log->attend_checkOut ? date('h:i A', strtotime($log->attend_checkOut)) : '-' }}</td>
+
+                    <td>{{ $event->event_name }}</td>
+                    <td>{{ $log->fines_amount }}</td>
+                    <td>{{ $log->total_fines }}</td>
+                    <td>{{ $event->date }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-
-    <hr>
-    <footer>
-        Prepared By:
-        <p>{{ $request->prepared_by }}</p>
-    </footer>
-
 </body>
 
 </html>
